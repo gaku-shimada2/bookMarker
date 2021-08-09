@@ -1,0 +1,30 @@
+PODS:
+  - HTMLReader (2.1.7)
+  - MBProgressHUD (1.2.0)
+  - Realm (10.1.4):
+    - Realm/Headers (= 10.1.4)
+  - Realm/Headers (10.1.4)
+  - RealmSwift (10.1.4):
+    - Realm (= 10.1.4)
+
+DEPENDENCIES:
+  - HTMLReader
+  - MBProgressHUD (~> 1.2.0)
+  - RealmSwift (= 10.1.4)
+
+SPEC REPOS:
+  trunk:
+    - HTMLReader
+    - MBProgressHUD
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  HTMLReader: ee1916031d637f3dd6865c048ee81f8dd4a1dda8
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  Realm: 80f4fb2971ccb9adc27a47d0955ae8e533a7030b
+  RealmSwift: 0e566ca714edb377bba8ea0811eafcea0b93734e
+
+PODFILE CHECKSUM: 64dbb9c140f9aa1397fbf0c7a242373552db3b19
+
+COCOAPODS: 1.10.1

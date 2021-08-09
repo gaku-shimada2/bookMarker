@@ -3,19 +3,40 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1204C65005F1FC40DDA528 /* Pods_BookMarker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90FD30AB588403DDFE41F35 /* Pods_BookMarker.framework */; };
+		F315195226BE2DA200F0BC39 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315195126BE2DA200F0BC39 /* Const.swift */; };
+		F315195626BE33D700F0BC39 /* ConfigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315195426BE33D700F0BC39 /* ConfigTableViewCell.swift */; };
+		F315195726BE33D700F0BC39 /* ConfigTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F315195526BE33D700F0BC39 /* ConfigTableViewCell.xib */; };
+		F315196326BFCE0800F0BC39 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315196226BFCE0800F0BC39 /* WebViewController.swift */; };
+		F315196626C0B00600F0BC39 /* DisplayArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315196526C0B00600F0BC39 /* DisplayArticleList.swift */; };
+		F315196926C0B85600F0BC39 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315196826C0B85600F0BC39 /* DateUtils.swift */; };
 		F376B4DB26B3689500A6D388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4DA26B3689500A6D388 /* AppDelegate.swift */; };
 		F376B4DD26B3689500A6D388 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4DC26B3689500A6D388 /* SceneDelegate.swift */; };
 		F376B4DF26B3689500A6D388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4DE26B3689500A6D388 /* ViewController.swift */; };
 		F376B4E226B3689500A6D388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F376B4E026B3689500A6D388 /* Main.storyboard */; };
 		F376B4E426B3689600A6D388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F376B4E326B3689600A6D388 /* Assets.xcassets */; };
 		F376B4E726B3689600A6D388 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F376B4E526B3689600A6D388 /* LaunchScreen.storyboard */; };
+		F376B4F226B3747700A6D388 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4F126B3747700A6D388 /* ConfigViewController.swift */; };
+		F376B4F626B50C0700A6D388 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4F426B50C0700A6D388 /* TableViewCell.swift */; };
+		F376B4F726B50C0700A6D388 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F376B4F526B50C0700A6D388 /* TableViewCell.xib */; };
+		F37ECBF326B7E9CC00A0813B /* RssClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ECBF226B7E9CC00A0813B /* RssClient.swift */; };
+		F37ECBF726B8320B00A0813B /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ECBF626B8320B00A0813B /* ArticleList.swift */; };
+		F393A85826B51B0100B6C7C7 /* BookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F393A85726B51B0100B6C7C7 /* BookMark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0261A476FB55DF9CB64C880E /* Pods-BookMarker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMarker.debug.xcconfig"; path = "Target Support Files/Pods-BookMarker/Pods-BookMarker.debug.xcconfig"; sourceTree = "<group>"; };
+		B90FD30AB588403DDFE41F35 /* Pods_BookMarker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookMarker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F315195126BE2DA200F0BC39 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		F315195426BE33D700F0BC39 /* ConfigTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTableViewCell.swift; sourceTree = "<group>"; };
+		F315195526BE33D700F0BC39 /* ConfigTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigTableViewCell.xib; sourceTree = "<group>"; };
+		F315196226BFCE0800F0BC39 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		F315196526C0B00600F0BC39 /* DisplayArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayArticleList.swift; sourceTree = "<group>"; };
+		F315196826C0B85600F0BC39 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		F376B4D726B3689500A6D388 /* BookMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F376B4DA26B3689500A6D388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F376B4DC26B3689500A6D388 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +45,13 @@
 		F376B4E326B3689600A6D388 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F376B4E626B3689600A6D388 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F376B4E826B3689600A6D388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F376B4F126B3747700A6D388 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
+		F376B4F426B50C0700A6D388 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		F376B4F526B50C0700A6D388 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		F37ECBF226B7E9CC00A0813B /* RssClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssClient.swift; sourceTree = "<group>"; };
+		F37ECBF626B8320B00A0813B /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
+		F393A85726B51B0100B6C7C7 /* BookMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMark.swift; sourceTree = "<group>"; };
+		FF10670A4AC58EFD53A0D522 /* Pods-BookMarker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMarker.release.xcconfig"; path = "Target Support Files/Pods-BookMarker/Pods-BookMarker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +59,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA1204C65005F1FC40DDA528 /* Pods_BookMarker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97E7DC01F7EDAA88419E12FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0261A476FB55DF9CB64C880E /* Pods-BookMarker.debug.xcconfig */,
+				FF10670A4AC58EFD53A0D522 /* Pods-BookMarker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B2DAAEF4A128BB40018A0D81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B90FD30AB588403DDFE41F35 /* Pods_BookMarker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F376B4CE26B3689500A6D388 = {
 			isa = PBXGroup;
 			children = (
 				F376B4D926B3689500A6D388 /* BookMarker */,
 				F376B4D826B3689500A6D388 /* Products */,
+				97E7DC01F7EDAA88419E12FA /* Pods */,
+				B2DAAEF4A128BB40018A0D81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,10 +107,22 @@
 				F376B4DA26B3689500A6D388 /* AppDelegate.swift */,
 				F376B4DC26B3689500A6D388 /* SceneDelegate.swift */,
 				F376B4DE26B3689500A6D388 /* ViewController.swift */,
+				F376B4F126B3747700A6D388 /* ConfigViewController.swift */,
+				F37ECBF226B7E9CC00A0813B /* RssClient.swift */,
 				F376B4E026B3689500A6D388 /* Main.storyboard */,
 				F376B4E326B3689600A6D388 /* Assets.xcassets */,
 				F376B4E526B3689600A6D388 /* LaunchScreen.storyboard */,
 				F376B4E826B3689600A6D388 /* Info.plist */,
+				F376B4F426B50C0700A6D388 /* TableViewCell.swift */,
+				F376B4F526B50C0700A6D388 /* TableViewCell.xib */,
+				F315196226BFCE0800F0BC39 /* WebViewController.swift */,
+				F315195426BE33D700F0BC39 /* ConfigTableViewCell.swift */,
+				F315195526BE33D700F0BC39 /* ConfigTableViewCell.xib */,
+				F393A85726B51B0100B6C7C7 /* BookMark.swift */,
+				F37ECBF626B8320B00A0813B /* ArticleList.swift */,
+				F315195126BE2DA200F0BC39 /* Const.swift */,
+				F315196526C0B00600F0BC39 /* DisplayArticleList.swift */,
+				F315196826C0B85600F0BC39 /* DateUtils.swift */,
 			);
 			path = BookMarker;
 			sourceTree = "<group>";
@@ -74,9 +134,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F376B4EB26B3689600A6D388 /* Build configuration list for PBXNativeTarget "BookMarker" */;
 			buildPhases = (
+				CC8FF4CA099927A7B4EAEFB0 /* [CP] Check Pods Manifest.lock */,
 				F376B4D326B3689500A6D388 /* Sources */,
 				F376B4D426B3689500A6D388 /* Frameworks */,
 				F376B4D526B3689500A6D388 /* Resources */,
+				6EE74624F113938A415448A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,21 +187,75 @@
 			buildActionMask = 2147483647;
 			files = (
 				F376B4E726B3689600A6D388 /* LaunchScreen.storyboard in Resources */,
+				F376B4F726B50C0700A6D388 /* TableViewCell.xib in Resources */,
 				F376B4E426B3689600A6D388 /* Assets.xcassets in Resources */,
 				F376B4E226B3689500A6D388 /* Main.storyboard in Resources */,
+				F315195726BE33D700F0BC39 /* ConfigTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6EE74624F113938A415448A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookMarker/Pods-BookMarker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookMarker/Pods-BookMarker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookMarker/Pods-BookMarker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC8FF4CA099927A7B4EAEFB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BookMarker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F376B4D326B3689500A6D388 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F376B4F626B50C0700A6D388 /* TableViewCell.swift in Sources */,
+				F315196326BFCE0800F0BC39 /* WebViewController.swift in Sources */,
+				F37ECBF326B7E9CC00A0813B /* RssClient.swift in Sources */,
+				F315196926C0B85600F0BC39 /* DateUtils.swift in Sources */,
+				F37ECBF726B8320B00A0813B /* ArticleList.swift in Sources */,
 				F376B4DF26B3689500A6D388 /* ViewController.swift in Sources */,
+				F315196626C0B00600F0BC39 /* DisplayArticleList.swift in Sources */,
 				F376B4DB26B3689500A6D388 /* AppDelegate.swift in Sources */,
+				F393A85826B51B0100B6C7C7 /* BookMark.swift in Sources */,
+				F376B4F226B3747700A6D388 /* ConfigViewController.swift in Sources */,
 				F376B4DD26B3689500A6D388 /* SceneDelegate.swift in Sources */,
+				F315195226BE2DA200F0BC39 /* Const.swift in Sources */,
+				F315195626BE33D700F0BC39 /* ConfigTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +399,7 @@
 		};
 		F376B4EC26B3689600A6D388 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0261A476FB55DF9CB64C880E /* Pods-BookMarker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -296,12 +413,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.gaku.shimada.BookMarker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		F376B4ED26B3689600A6D388 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF10670A4AC58EFD53A0D522 /* Pods-BookMarker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,7 +433,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.gaku.shimada.BookMarker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
