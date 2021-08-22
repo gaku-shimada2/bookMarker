@@ -150,6 +150,21 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
         errorLabel.text = ""
         errorLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         
+        // ナビゲーションバーのタイトル設定
+        self.navigationItem.title = "ブックマーク登録"
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [
+            // 文字の色
+            .foregroundColor: UIColor(red: 30/255.0, green: 161/255.0, blue: 150/255.0, alpha:1),
+            // フォント
+            NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 20)!
+        ]
+        
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        
         // カスタムセルを登録する
         let nib = UINib(nibName: "ConfigTableViewCell", bundle: nil)
         urlTableView.register(nib, forCellReuseIdentifier: "Cell")

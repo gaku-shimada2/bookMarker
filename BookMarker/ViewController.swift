@@ -28,10 +28,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // ナビゲーションバーのタイトル設定
         self.navigationItem.title = "BookMarker"
-        // ナビゲーションバーのスタイル設定（デフォルト：白いすりガラス）
-        self.navigationController?.navigationBar.barStyle = .default
-        // ナビゲーションバーの背景色指定
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha:1)
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [
+            // 文字の色
+            .foregroundColor: UIColor(red: 30/255.0, green: 161/255.0, blue: 150/255.0, alpha:1),
+            // フォント
+            NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 25)!
+        ]
+        
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        
+ 
         // 次の画面のBackボタンを「戻る」に変更
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
             title:  "",
@@ -39,11 +49,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             target: nil,
             action: nil
         )
-        // タイトルテキストの装飾設定
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            // 文字の色
-            .foregroundColor: UIColor(red: 30/255.0, green: 161/255.0, blue: 150/255.0, alpha:1)
-        ]
         
         tableView.delegate = self
         tableView.dataSource = self
