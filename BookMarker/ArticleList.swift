@@ -27,4 +27,5 @@ struct Item: Codable {
     let pubDate: String
     let link: String
     let guid: String
+    let description: String
 }

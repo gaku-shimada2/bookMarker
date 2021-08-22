@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,8 +31,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mQk-xa-74a">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="refresh" id="Fzz-82-1Ef"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="YCs-zz-wqt">
+                            <color key="tintColor" red="0.11764705882352941" green="0.63137254901960782" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="OgJ-Im-9H4" kind="show" id="1VN-f2-6Jl"/>
                             </connections>
@@ -48,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="900.00000000000011" y="75.669642857142847"/>
         </scene>
-        <!--Config View Controller-->
+        <!--ブックマーク登録-->
         <scene sceneID="KD6-tW-1Gb">
             <objects>
                 <viewController id="OgJ-Im-9H4" customClass="ConfigViewController" customModule="BookMarker" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,10 +56,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PFf-YF-E3i">
-                                <rect key="frame" x="10" y="286" width="394" height="576"/>
+                                <rect key="frame" x="10" y="329" width="394" height="533"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　Amebaブログの記事一覧ページのURLを入力してください。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOq-bP-YKR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　ブックマーク登録するAmebaブログのURLを入力してください。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOq-bP-YKR">
                                 <rect key="frame" x="10" y="98" width="394" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -86,24 +85,33 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-bX-zWL">
                                 <rect key="frame" x="188.5" y="242" width="37" height="34"/>
                                 <state key="normal" title="登録">
-                                    <color key="titleColor" name="AccentColor"/>
+                                    <color key="titleColor" red="0.11764705882352941" green="0.63137254901960782" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
                                     <action selector="submitButtonTapped:" destination="OgJ-Im-9H4" eventType="touchUpInside" id="OHM-Qd-Zzp"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブックマーク一覧 （スワイプで削除できます。）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6V-u0-22o">
+                                <rect key="frame" x="10" y="306" width="394" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eNQ-Ro-jyX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="eNQ-Ro-jyX" firstAttribute="trailing" secondItem="PFf-YF-E3i" secondAttribute="trailing" constant="10" id="5Dm-te-QgC"/>
+                            <constraint firstItem="q6V-u0-22o" firstAttribute="top" secondItem="uiE-bX-zWL" secondAttribute="bottom" constant="30" id="6Rh-hu-cQV"/>
                             <constraint firstItem="cPl-nG-bNI" firstAttribute="leading" secondItem="eNQ-Ro-jyX" secondAttribute="leading" constant="10" id="9SH-Dk-2vZ"/>
+                            <constraint firstItem="q6V-u0-22o" firstAttribute="leading" secondItem="eNQ-Ro-jyX" secondAttribute="leading" constant="10" id="AAw-KB-ZKi"/>
                             <constraint firstItem="iOq-bP-YKR" firstAttribute="leading" secondItem="eNQ-Ro-jyX" secondAttribute="leading" constant="10" id="C4d-bb-oab"/>
                             <constraint firstItem="iOq-bP-YKR" firstAttribute="top" secondItem="eNQ-Ro-jyX" secondAttribute="top" constant="10" id="CYX-Gm-pFk"/>
                             <constraint firstItem="g9V-hq-TgD" firstAttribute="leading" secondItem="eNQ-Ro-jyX" secondAttribute="leading" constant="10" id="DHu-LF-Ehm"/>
                             <constraint firstItem="g9V-hq-TgD" firstAttribute="top" secondItem="cPl-nG-bNI" secondAttribute="bottom" constant="5" id="TUT-cq-sR9"/>
+                            <constraint firstItem="eNQ-Ro-jyX" firstAttribute="trailing" secondItem="q6V-u0-22o" secondAttribute="trailing" constant="10" id="XBG-y4-kXP"/>
                             <constraint firstItem="eNQ-Ro-jyX" firstAttribute="trailing" secondItem="iOq-bP-YKR" secondAttribute="trailing" constant="10" id="XfW-xm-a1H"/>
                             <constraint firstItem="uiE-bX-zWL" firstAttribute="centerX" secondItem="lHK-kQ-jrE" secondAttribute="centerX" id="XmK-0S-018"/>
                             <constraint firstItem="eNQ-Ro-jyX" firstAttribute="bottom" secondItem="PFf-YF-E3i" secondAttribute="bottom" id="clB-gv-ZgG"/>
@@ -111,18 +119,18 @@
                             <constraint firstItem="uiE-bX-zWL" firstAttribute="top" secondItem="g9V-hq-TgD" secondAttribute="bottom" constant="10" id="fXT-hr-1dA"/>
                             <constraint firstItem="cPl-nG-bNI" firstAttribute="top" secondItem="iOq-bP-YKR" secondAttribute="bottom" constant="10" id="fw3-ts-9yS"/>
                             <constraint firstItem="PFf-YF-E3i" firstAttribute="leading" secondItem="eNQ-Ro-jyX" secondAttribute="leading" constant="10" id="hK4-vE-Pfh"/>
-                            <constraint firstItem="PFf-YF-E3i" firstAttribute="top" secondItem="uiE-bX-zWL" secondAttribute="bottom" constant="10" id="lo1-84-mKE"/>
+                            <constraint firstItem="PFf-YF-E3i" firstAttribute="top" secondItem="q6V-u0-22o" secondAttribute="bottom" constant="5" id="lKO-sf-OGV"/>
                             <constraint firstItem="eNQ-Ro-jyX" firstAttribute="trailing" secondItem="g9V-hq-TgD" secondAttribute="trailing" constant="10" id="yxp-IU-n5x"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="IRn-Ix-kue" appends="YES" id="z4l-Ga-6E0"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="FxN-2g-oek"/>
+                    <navigationItem key="navigationItem" title="ブックマーク登録" id="FxN-2g-oek"/>
                     <connections>
-                        <outlet property="URLTableView" destination="PFf-YF-E3i" id="dt4-xi-yhO"/>
-                        <outlet property="URLTextField" destination="cPl-nG-bNI" id="Ng4-mq-85j"/>
                         <outlet property="errorLabel" destination="g9V-hq-TgD" id="fXD-L8-WbX"/>
+                        <outlet property="urlTableView" destination="PFf-YF-E3i" id="dt4-xi-yhO"/>
+                        <outlet property="urlTextField" destination="cPl-nG-bNI" id="Ng4-mq-85j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9K-Xb-DRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -163,8 +171,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="WyH-Ci-TLF"/>
                     <connections>
-                        <outlet property="WebView" destination="aaJ-MW-cqb" id="Eyx-Gy-cAh"/>
                         <outlet property="activityIndicator" destination="mdF-oe-347" id="Epa-NF-5UV"/>
+                        <outlet property="webView" destination="aaJ-MW-cqb" id="Eyx-Gy-cAh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qKg-6p-qho" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -190,10 +198,8 @@
             <point key="canvasLocation" x="-10.144927536231885" y="75.669642857142847"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.11764705882352941" green="0.63137254901960782" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

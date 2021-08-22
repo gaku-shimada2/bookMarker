@@ -9,6 +9,8 @@ target 'BookMarker' do
   pod 'RealmSwift','10.1.4'
   pod "HTMLReader"
   pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'SwiftSoup'
+  pod 'SDWebImage', '~> 5.0'
 
 
 end

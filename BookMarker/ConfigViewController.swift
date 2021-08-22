@@ -13,8 +13,8 @@ import MBProgressHUD
 
 class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
-    @IBOutlet weak var URLTextField: UITextView!
-    @IBOutlet weak var URLTableView: UITableView!
+    @IBOutlet weak var urlTextField: UITextView!
+    @IBOutlet weak var urlTableView: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
     
     let realm = try! Realm()
@@ -22,74 +22,109 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var bookMark = BookMark()
     var bookMarkArray = try! Realm().objects(BookMark.self).sorted(byKeyPath: "date", ascending: false)
     var items: [Item] = []
-    var feed: Feed!
-    var articlelist: ArticleList!
-    var pathString: String!
+    // var feed: Feed!
+    // var articlelist: ArticleList!
+    // var pathString: String!
     
     
     func textViewDidEndEditing(_ URLTextField: UITextView){
         // 入力チェック（textViewDidEndEditing）
-        if URLTextField == URLTextField {
-            let text = URLTextField.text
-            if text?.isEmpty == true {
-                errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
-                URLTextField.layer.borderWidth = 1
-                URLTextField.layer.borderColor = UIColor.red.cgColor
-            }else if text?.starts(with: "https://ameblo.jp/") == false {
-                errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
-                URLTextField.layer.borderWidth = 1
-                URLTextField.layer.borderColor = UIColor.red.cgColor
-            }else {
-                errorLabel.text = ""
-            }
+        let text = URLTextField.text
+        // 空文字チェック
+        if text!.isEmpty {
+            errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
+            URLTextField.layer.borderWidth = 1
+            URLTextField.layer.borderColor = UIColor.red.cgColor
+            
+            // URLチェック
+        }else if text?.starts(with: "https://ameblo.jp/") == false {
+            errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
+            URLTextField.layer.borderWidth = 1
+            URLTextField.layer.borderColor = UIColor.red.cgColor
+        }else {
+            errorLabel.text = ""
         }
     }
     
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         // 入力チェック（登録ボタン押下時）
-        let text = URLTextField.text
-        if URLTextField == URLTextField {
-            if text?.isEmpty == true {
-                errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
-                URLTextField.layer.borderColor = UIColor.red.cgColor
-                URLTextField.layer.borderWidth = 1
-                return
-            }else if text?.starts(with: "https://ameblo.jp/") == false {
-                return
-            }
-        }
-        if let inputURL = URL(string: text!) {
-            pathString = inputURL.pathComponents[1]
-        }
-        // URL作成処理
-        let urlString = Const.apiURL + Const.amebloURL + pathString + Const.amebloRssPath
-        print (urlString)
+        let text = urlTextField.text
         
-        // let urlString = self.URLTextField.text!
+        // 空文字チェック
+        if text?.isEmpty == true {
+            errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
+            urlTextField.layer.borderColor = UIColor.red.cgColor
+            urlTextField.layer.borderWidth = 1
+            // UIAlertControllerの生成
+            let alert = UIAlertController(title: "https://ameblo.jp/から始まるURLを入力してください", message: "", preferredStyle: .alert)
+            // アクションの生成
+            let yesAction = UIAlertAction(title: "OK", style: .default) { action in
+                print("tapped yes")
+            }
+            // アクションの追加
+            alert.addAction(yesAction)
+            // UIAlertControllerの表示
+            present(alert, animated: true, completion: nil)
+            
+            return
+            
+        // URLチェック
+        }else if text?.starts(with: "https://ameblo.jp/") == false {
+            // UIAlertControllerの生成
+            let alert = UIAlertController(title: "https://ameblo.jp/から始まるURLを入力してください", message: "", preferredStyle: .alert)
+            // アクションの生成
+            let yesAction = UIAlertAction(title: "OK", style: .default) { action in
+            }
+            // アクションの追加
+            alert.addAction(yesAction)
+            // UIAlertControllerの表示
+            present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        guard let inputURL = URL(string: text!) else {
+           return
+        }
+        let pathString = inputURL.pathComponents[1]        // URL作成処理
+        let urlString = Const.apiURL + Const.amebloURL + pathString + Const.amebloRssPath
+        
         // HUDの表示
         MBProgressHUD.showAdded(to: view, animated: true)
         
         RssClient.fetchItems(urlString: urlString, completion: { (response) in
             switch response {
             case .success(let articlelist):
+                /* profileイメージの取得　アメブロのスクレーピングでは実装不可だった・・・
+                let imageURLString = "https://profile.ameba.jp/ameba/" + self.pathString + "/"
+                print(imageURLString)
+                ImageClient.fetchProfileImages(urlString: imageURLString, completion: { (response2) in
+                    switch response2{
+                    
+                    case .success(let profileImageURL):
+                        print(profileImageURL)
+                    case .failure(_):
+                        break
+                    }
+                })
+                */
                 DispatchQueue.main.async() { () -> Void in
                     // HUDの非表示
                     MBProgressHUD.hide(for: self.view, animated: true)
                     
-                    self.articlelist = articlelist
-                    print(self.articlelist!)
                     // アプリDBに書き込み
                     let insertRealm = try! Realm()
                     // todo エラー制御がない
                     try! insertRealm.write {
+                        self.bookMark = BookMark()
                         self.bookMark.bookMarkURL = articlelist.feed.url
                         self.bookMark.date = Date()
                         self.bookMark.pageTitle = articlelist.feed.title
                         insertRealm.add(self.bookMark, update: .modified)
                     }
                     
-                    self.URLTableView.reloadData()
+                    self.urlTableView.reloadData()
                 }
             case .failure(let err):
                 DispatchQueue.main.async() { () -> Void in
@@ -97,8 +132,8 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     // HUDの非表示
                     MBProgressHUD.hide(for: self.view, animated: true)
                     self.errorLabel.text = "記事の取得に失敗しました"
-                    self.URLTextField.layer.borderWidth = 1
-                    self.URLTextField.layer.borderColor = UIColor.red.cgColor
+                    self.urlTextField.layer.borderWidth = 1
+                    self.urlTextField.layer.borderColor = UIColor.red.cgColor
                 }
                 
             }
@@ -108,16 +143,16 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        URLTableView.delegate = self
-        URLTableView.dataSource = self
-        URLTextField.delegate = self
+        urlTableView.delegate = self
+        urlTableView.dataSource = self
+        urlTextField.delegate = self
         
         errorLabel.text = ""
         errorLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         
         // カスタムセルを登録する
         let nib = UINib(nibName: "ConfigTableViewCell", bundle: nil)
-        URLTableView.register(nib, forCellReuseIdentifier: "Cell")
+        urlTableView.register(nib, forCellReuseIdentifier: "Cell")
         
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -140,7 +175,7 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // 各セルの内容を返すメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを取得してデータを設定する
-        let cell = URLTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ConfigTableViewCell
+        let cell = urlTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ConfigTableViewCell
         cell.setBookMarkData(bookMarkArray[indexPath.row])
         return cell
         

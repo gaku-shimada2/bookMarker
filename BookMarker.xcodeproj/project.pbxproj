@@ -14,6 +14,7 @@
 		F315196326BFCE0800F0BC39 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315196226BFCE0800F0BC39 /* WebViewController.swift */; };
 		F315196626C0B00600F0BC39 /* DisplayArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315196526C0B00600F0BC39 /* DisplayArticleList.swift */; };
 		F315196926C0B85600F0BC39 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315196826C0B85600F0BC39 /* DateUtils.swift */; };
+		F315197826C10CA000F0BC39 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315197726C10CA000F0BC39 /* ImageClient.swift */; };
 		F376B4DB26B3689500A6D388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4DA26B3689500A6D388 /* AppDelegate.swift */; };
 		F376B4DD26B3689500A6D388 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4DC26B3689500A6D388 /* SceneDelegate.swift */; };
 		F376B4DF26B3689500A6D388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B4DE26B3689500A6D388 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 		F315196226BFCE0800F0BC39 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F315196526C0B00600F0BC39 /* DisplayArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayArticleList.swift; sourceTree = "<group>"; };
 		F315196826C0B85600F0BC39 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		F315197726C10CA000F0BC39 /* ImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
 		F376B4D726B3689500A6D388 /* BookMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F376B4DA26B3689500A6D388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F376B4DC26B3689500A6D388 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				F376B4DE26B3689500A6D388 /* ViewController.swift */,
 				F376B4F126B3747700A6D388 /* ConfigViewController.swift */,
 				F37ECBF226B7E9CC00A0813B /* RssClient.swift */,
+				F315197726C10CA000F0BC39 /* ImageClient.swift */,
 				F376B4E026B3689500A6D388 /* Main.storyboard */,
 				F376B4E326B3689600A6D388 /* Assets.xcassets */,
 				F376B4E526B3689600A6D388 /* LaunchScreen.storyboard */,
@@ -249,6 +252,7 @@
 				F315196926C0B85600F0BC39 /* DateUtils.swift in Sources */,
 				F37ECBF726B8320B00A0813B /* ArticleList.swift in Sources */,
 				F376B4DF26B3689500A6D388 /* ViewController.swift in Sources */,
+				F315197826C10CA000F0BC39 /* ImageClient.swift in Sources */,
 				F315196626C0B00600F0BC39 /* DisplayArticleList.swift in Sources */,
 				F376B4DB26B3689500A6D388 /* AppDelegate.swift in Sources */,
 				F393A85826B51B0100B6C7C7 /* BookMark.swift in Sources */,
