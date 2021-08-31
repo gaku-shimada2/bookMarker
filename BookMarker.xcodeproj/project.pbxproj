@@ -27,6 +27,7 @@
 		F37ECBF326B7E9CC00A0813B /* RssClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ECBF226B7E9CC00A0813B /* RssClient.swift */; };
 		F37ECBF726B8320B00A0813B /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ECBF626B8320B00A0813B /* ArticleList.swift */; };
 		F393A85826B51B0100B6C7C7 /* BookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F393A85726B51B0100B6C7C7 /* BookMark.swift */; };
+		F39F507C26DE6D5900CC68CD /* English.md in Resources */ = {isa = PBXBuildFile; fileRef = F39F507B26DE6D5900CC68CD /* English.md */; };
 		F3FCE8D126D9C94500628FD7 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCE8D026D9C94500628FD7 /* InputViewController.swift */; };
 		F3FCE8D326D9DA8300628FD7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCE8D226D9DA8300628FD7 /* Article.swift */; };
 		F3FCE8D526D9DBB100628FD7 /* ImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCE8D426D9DBB100628FD7 /* ImageUrl.swift */; };
@@ -56,6 +57,7 @@
 		F37ECBF226B7E9CC00A0813B /* RssClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssClient.swift; sourceTree = "<group>"; };
 		F37ECBF626B8320B00A0813B /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		F393A85726B51B0100B6C7C7 /* BookMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMark.swift; sourceTree = "<group>"; };
+		F39F507B26DE6D5900CC68CD /* English.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = English.md; sourceTree = "<group>"; };
 		F3FCE8D026D9C94500628FD7 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		F3FCE8D226D9DA8300628FD7 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		F3FCE8D426D9DBB100628FD7 /* ImageUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrl.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		F376B4CE26B3689500A6D388 = {
 			isa = PBXGroup;
 			children = (
+				F39F507A26DE6D2F00CC68CD /* PrivacyPolicy */,
 				F376B4D926B3689500A6D388 /* BookMarker */,
 				F376B4D826B3689500A6D388 /* Products */,
 				97E7DC01F7EDAA88419E12FA /* Pods */,
@@ -137,6 +140,14 @@
 				F315196826C0B85600F0BC39 /* DateUtils.swift */,
 			);
 			path = BookMarker;
+			sourceTree = "<group>";
+		};
+		F39F507A26DE6D2F00CC68CD /* PrivacyPolicy */ = {
+			isa = PBXGroup;
+			children = (
+				F39F507B26DE6D5900CC68CD /* English.md */,
+			);
+			path = PrivacyPolicy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F376B4E726B3689600A6D388 /* LaunchScreen.storyboard in Resources */,
+				F39F507C26DE6D5900CC68CD /* English.md in Resources */,
 				F376B4F726B50C0700A6D388 /* TableViewCell.xib in Resources */,
 				F376B4E426B3689600A6D388 /* Assets.xcassets in Resources */,
 				F376B4E226B3689500A6D388 /* Main.storyboard in Resources */,
