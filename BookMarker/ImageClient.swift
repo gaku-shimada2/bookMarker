@@ -20,18 +20,91 @@ class ImageClient {
             // 入力したURLのページから、HTMLのソースを取得する。
             let sourceHTML: String = try String(contentsOf: targetURL, encoding: String.Encoding.utf8);
             let doc: SwiftSoup.Document = try SwiftSoup.parse(sourceHTML)
-            let item: SwiftSoup.Elements = try doc.select("article").select("[data-uranus-component=entryBody]").select("a")
-            
+            // let item: SwiftSoup.Elements = try doc.select("article").select("[data-uranus-component=entryBody]").select("a")
             var imageURLList: [String] = []
+            let maxLoop = 2
+            print(targetURL.host!)
             
-            for element: Element in item.array() {
-                let imageURL: String = try! element.attr("href")
-                if imageURL.contains(".jpg"){
-                    imageURLList.append(imageURL)
+            // アメーバブログのimage取得
+            if targetURL.host!.contains("ameblo.jp"){
+                let item: SwiftSoup.Elements = try doc.select("article").select("img")
+                
+                for element: Element in item.array() {
+                    let imageURL: String = try! element.attr("src")
+                    if imageURL.starts(with: "http") && (imageURL.contains("jpg") || imageURL.contains("png") || imageURL.contains("jpeg")) && !imageURLList.contains(imageURL){
+                        imageURLList.append(imageURL)
+                    }
+                    if imageURLList.count > maxLoop {
+                        break
+                    }
+                    
+                }
+            // lineblogのimage取得
+            } else if targetURL.host!.contains("lineblog.me"){
+                let item: SwiftSoup.Elements = try doc.select("article").select("img")
+                
+                for element: Element in item.array() {
+                    let imageURL: String = try! element.attr("src")
+                    if imageURL.starts(with: "http") && !imageURLList.contains(imageURL){
+                        imageURLList.append(imageURL)
+                    }
+                    if imageURLList.count > maxLoop {
+                        break
+                    }
+                    
+                }
+                
+            // エキサイトブログのimage取得
+            } else if targetURL.host!.contains("exblog"){
+                let item: SwiftSoup.Elements = try doc.select("body").select("img")
+                
+                for element: Element in item.array() {
+                    let imageURL: String = try! element.attr("src")
+                    if imageURL.starts(with: "http") && (imageURL.contains("jpg") || imageURL.contains("png") || imageURL.contains("jpeg")) && !imageURLList.contains(imageURL){
+                        imageURLList.append(imageURL)
+                    }
+                    if imageURLList.count > (maxLoop + 1) {
+                        imageURLList.removeFirst()
+                        break
+                    }
+                    
+                }
+
+            // 楽天ブログのimage取得
+            } else if targetURL.host!.contains("plaza.rakuten"){
+                let item: SwiftSoup.Elements = try doc.select("table").select("img")
+                
+                for element: Element in item.array() {
+                    let imageURL: String = try! element.attr("src")
+                    if imageURL.starts(with: "http") && (imageURL.contains("jpg") || imageURL.contains("png") || imageURL.contains("jpeg")) && !imageURLList.contains(imageURL){
+                        imageURLList.append(imageURL)
+                    }
+                    if imageURLList.count > (maxLoop) {
+                        imageURLList.removeFirst()
+                        break
+                    }
+                    
+                }
+
+
+            // その他ブログのimege取得
+            } else {
+                let item: SwiftSoup.Elements = try doc.select("article").select("img")
+                
+                for element: Element in item.array() {
+                    let imageURL: String = try! element.attr("src")
+                    if imageURL.starts(with: "http") && (imageURL.contains("jpg") || imageURL.contains("png") || imageURL.contains("jpeg")) && !imageURLList.contains(imageURL){
+                        imageURLList.append(imageURL)
+                    }
+                    if imageURLList.count > maxLoop {
+                        break
+                    }
+                    
                 }
                 
             }
             
+
             completion(.success(imageURLList))
                         
         }

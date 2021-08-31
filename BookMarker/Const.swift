@@ -9,6 +9,19 @@ import Foundation
 
 struct Const {
     static let apiURL = "https://api.rss2json.com/v1/api.json?rss_url="
-    static let amebloURL = "http%3A%2F%2Fameblo.jp%2F"
-    static let amebloRssPath = "%2Frss.html"
+    static let amebloURL = "http://ameblo.jp/"
+    static let amebloRssPath = "/rss.html"
+    
+    static let lineBlogMeURL = "https://lineblog.me/"
+    static let lineBlogMeRssPath = "/index.rdf"
+
+    static let exblogURL = "https://"
+    static let exblogRssPath = "/index.xml"
+
+    static let rakutenBlogURL = "http://api.plaza.rakuten.ne.jp/"
+    static let rakutenBlogRssPath = "/rss/"
+
+    static let otherBlogURL = "http://"
+    static let otherBlogRssPath = "/index.rdf"
+
 }

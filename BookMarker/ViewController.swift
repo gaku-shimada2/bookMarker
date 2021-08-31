@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var displayArticleList: [DisplayArticleList] = []
     var bookMarkArray = try! Realm().objects(BookMark.self).sorted(byKeyPath: "date", ascending: false)
+    var articleArray = try! Realm().objects(Article.self).sorted(byKeyPath: "link", ascending: false)
+    var imageUrlArray = try! Realm().objects(ImageUrl.self).sorted(byKeyPath: "link", ascending: false)
     var pathString: String!
     var isFirst = true
     let semaphore = DispatchSemaphore(value: 1)
@@ -27,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view.
         
         // ナビゲーションバーのタイトル設定
-        self.navigationItem.title = "BookMarker"
+        self.navigationItem.title = "BLOG READER"
         
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
@@ -146,12 +148,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // 非同期処理の場合、Realmが別スレッドを参照できないため、値を退避する
         for bookMark in self.bookMarkArray {
             
-            // URL作成処理
-            guard let inputURL = URL(string: bookMark.bookMarkURL) else {
-               return
-            }
-            pathString = inputURL.pathComponents[1]
-            let urlString = Const.apiURL + Const.amebloURL + pathString + Const.amebloRssPath
+            // URL取得
+            let urlString = Const.apiURL + bookMark.bookMarkURL
             
             // 並列処理 enter()
             dispatchGroup.enter()
@@ -170,19 +168,61 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             displayArticle.link = item.link
                             displayArticle.pubDate = DateUtils.dateFromString(string: item.pubDate, format: "yyyy-MM-dd HH:mm:ss")
                             displayArticle.description = item.description
-                            // 並列処理 enter()
-                            dispatchGroup.enter()
-                            ImageClient.fetchImages(urlString: displayArticle.link, completion: { response in
-                                // 並列処理　leave()
-                                defer { dispatchGroup.leave() }
-                                switch response {
-                                case .success(let imageURLList):
-                                    displayArticle.imageURL = imageURLList
-                                case .failure(let error):
-                                    print("画像の取得に失敗しました: reason(\(error))")
+                        
+                            let imageUrlArray = try! Realm().objects(ImageUrl.self).filter("link == %@", item.link)
+                            let articleArray = try! Realm().objects(Article.self).filter("link == %@", item.link)
+                        
+                            // DBに登録されていなかったリアルタイム取得
+                            if articleArray.count == 0{
+                                print("デバッグ：リアルタイム取得")
+                                // 並列処理 enter()
+                                dispatchGroup.enter()
+                                ImageClient.fetchImages(urlString: displayArticle.link, completion: { response in
+                                    // 並列処理　leave()
+                                    defer { dispatchGroup.leave() }
+                                    switch response {
+                                    case .success(let imageURLList):
+                                        displayArticle.imageURL = imageURLList
+                                        
+                                        let insertRealmForArticle = try! Realm()
+                                        // todo エラー制御がない
+                                        try! insertRealmForArticle.write {
+                                            let article = Article()
+                                            article.link = item.link
+                                            article.bookMarkURL = bookMark.bookMarkURL
+                                            article.title = item.title
+                                            article.description1 = item.description
+                                            article.pubDate = item.pubDate
+                                            insertRealmForArticle.add(article, update: .modified)
+                                        }
+                                        
+                                        // DBに存在しないデータは登録する
+                                        for imageURL in imageURLList {
+                                            
+                                            let insertRealmForimageUrl = try! Realm()
+                                            try! insertRealmForimageUrl.write {
+                                                let imageUrl = ImageUrl()
+                                                imageUrl.imageURL = imageURL
+                                                imageUrl.link = item.link
+                                                insertRealmForimageUrl.add(imageUrl, update: .modified)
+                                            }
+                                            
+                                        }
+                   
+                                    case .failure(let error):
+                                        print("画像の取得に失敗しました: reason(\(error))")
+                                    }
+                                })
+                                self.displayArticleList.append(displayArticle)
+                                
+                            //DBに登録されている場合
+                            } else {
+                                for imageUrl in imageUrlArray{
+                                    print("デバッグ：DBから取得")
+                                    displayArticle.imageURL.append(imageUrl.imageURL)
                                 }
-                            })
-                            self.displayArticleList.append(displayArticle)
+                                self.displayArticleList.append(displayArticle)
+                            }
                         }
                     }
                 case .failure(let err):

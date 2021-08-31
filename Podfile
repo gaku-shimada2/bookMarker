@@ -6,7 +6,7 @@ target 'BookMarker' do
   use_frameworks!
 
   # Pods for BookMarker
-  pod 'RealmSwift','10.1.4'
+  pod 'RealmSwift','10.11.0'
   pod "HTMLReader"
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'SwiftSoup'

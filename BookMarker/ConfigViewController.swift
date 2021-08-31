@@ -22,9 +22,6 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var bookMark = BookMark()
     var bookMarkArray = try! Realm().objects(BookMark.self).sorted(byKeyPath: "date", ascending: false)
     var items: [Item] = []
-    // var feed: Feed!
-    // var articlelist: ArticleList!
-    // var pathString: String!
     
     
     func textViewDidEndEditing(_ URLTextField: UITextView){
@@ -32,15 +29,11 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let text = URLTextField.text
         // 空文字チェック
         if text!.isEmpty {
-            errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
+            errorLabel.text = "httpまたはhttpsから始まるURLを入力してください。"
             URLTextField.layer.borderWidth = 1
             URLTextField.layer.borderColor = UIColor.red.cgColor
             
-            // URLチェック
-        }else if text?.starts(with: "https://ameblo.jp/") == false {
-            errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
-            URLTextField.layer.borderWidth = 1
-            URLTextField.layer.borderColor = UIColor.red.cgColor
+
         }else {
             errorLabel.text = ""
         }
@@ -52,12 +45,12 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let text = urlTextField.text
         
         // 空文字チェック
-        if text?.isEmpty == true {
-            errorLabel.text = "https://ameblo.jp/から始まるURLを入力してください"
+        if text!.isEmpty {
+            errorLabel.text = "httpまたはhttpsから始まるURLを入力してください。"
             urlTextField.layer.borderColor = UIColor.red.cgColor
             urlTextField.layer.borderWidth = 1
             // UIAlertControllerの生成
-            let alert = UIAlertController(title: "https://ameblo.jp/から始まるURLを入力してください", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: "httpまたはhttpsから始まるURLを入力してください。", message: "", preferredStyle: .alert)
             // アクションの生成
             let yesAction = UIAlertAction(title: "OK", style: .default) { action in
                 print("tapped yes")
@@ -68,13 +61,18 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
             present(alert, animated: true, completion: nil)
             
             return
-            
-        // URLチェック
-        }else if text?.starts(with: "https://ameblo.jp/") == false {
+        }
+        
+        // URL チェック
+        if !(text!.starts(with: "http://") || text!.starts(with: "https://")){
+            errorLabel.text = "httpまたはhttpsから始まるURLを入力してください。"
+            urlTextField.layer.borderColor = UIColor.red.cgColor
+            urlTextField.layer.borderWidth = 1
             // UIAlertControllerの生成
-            let alert = UIAlertController(title: "https://ameblo.jp/から始まるURLを入力してください", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: "httpまたはhttpsから始まるURLを入力してください。", message: "", preferredStyle: .alert)
             // アクションの生成
             let yesAction = UIAlertAction(title: "OK", style: .default) { action in
+                print("tapped yes")
             }
             // アクションの追加
             alert.addAction(yesAction)
@@ -82,33 +80,41 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
             present(alert, animated: true, completion: nil)
             
             return
+
         }
         
-        guard let inputURL = URL(string: text!) else {
-           return
+        // URL作成処理
+        let url = URL(string: text!)
+        let host = url!.host
+        let rssUrl:String!
+
+        if host!.contains("ameblo.jp") {
+            let blogId = url!.pathComponents[1]
+            rssUrl = Const.amebloURL + blogId + Const.amebloRssPath
+        } else if host!.contains("lineblog.me"){
+            let blogId = url!.pathComponents[1]
+            rssUrl = Const.lineBlogMeURL + blogId + Const.lineBlogMeRssPath
+        } else if host!.contains("exblog.jp"){
+            rssUrl = Const.exblogURL + host! + Const.exblogRssPath
+        } else if host!.contains("plaza.rakuten"){
+            let blogId = url!.pathComponents[1]
+            rssUrl = Const.rakutenBlogURL + blogId + Const.rakutenBlogRssPath
+        } else{
+            rssUrl = Const.otherBlogURL + host! + Const.otherBlogRssPath
         }
-        let pathString = inputURL.pathComponents[1]        // URL作成処理
-        let urlString = Const.apiURL + Const.amebloURL + pathString + Const.amebloRssPath
         
+        
+        // URL生成処理
+        let urlString = Const.apiURL + rssUrl!
+        print("DEBUG:" + urlString)
+            
         // HUDの表示
         MBProgressHUD.showAdded(to: view, animated: true)
         
         RssClient.fetchItems(urlString: urlString, completion: { (response) in
             switch response {
             case .success(let articlelist):
-                /* profileイメージの取得　アメブロのスクレーピングでは実装不可だった・・・
-                let imageURLString = "https://profile.ameba.jp/ameba/" + self.pathString + "/"
-                print(imageURLString)
-                ImageClient.fetchProfileImages(urlString: imageURLString, completion: { (response2) in
-                    switch response2{
-                    
-                    case .success(let profileImageURL):
-                        print(profileImageURL)
-                    case .failure(_):
-                        break
-                    }
-                })
-                */
+
                 DispatchQueue.main.async() { () -> Void in
                     // HUDの非表示
                     MBProgressHUD.hide(for: self.view, animated: true)
@@ -123,7 +129,45 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.bookMark.pageTitle = articlelist.feed.title
                         insertRealm.add(self.bookMark, update: .modified)
                     }
-                    
+
+                    // アプリDBに書き込み
+                    for item in articlelist.items{
+                        let insertRealmForArticle = try! Realm()
+                        // todo エラー制御がない
+                        try! insertRealmForArticle.write {
+                            let article = Article()
+                            article.link = item.link
+                            article.bookMarkURL = articlelist.feed.url
+                            article.title = item.title
+                            article.description1 = item.description
+                            article.pubDate = item.pubDate
+                            insertRealmForArticle.add(article, update: .modified)
+                        }
+                        
+                       
+                        ImageClient.fetchImages(urlString: item.link, completion: { response in
+                            switch response{
+                            case .success(let imageURLList):
+                                for imageURL in imageURLList {
+                                    
+                                    let insertRealmForimageUrl = try! Realm()
+                                    try! insertRealmForimageUrl.write {
+                                        let imageUrl = ImageUrl()
+                                        imageUrl.imageURL = imageURL
+                                        imageUrl.link = item.link
+                                        insertRealmForimageUrl.add(imageUrl, update: .modified)
+                                    }
+                                    
+                                }
+                                
+                            case .failure(let error):
+                                print("画像の取得に失敗しました: reason(\(error))")
+                            }
+                        })
+                        
+                        
+                    }
+                  
                     self.urlTableView.reloadData()
                 }
             case .failure(let err):
@@ -151,14 +195,14 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
         errorLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         
         // ナビゲーションバーのタイトル設定
-        self.navigationItem.title = "ブックマーク登録"
+        self.navigationItem.title = "BLOG READER"
         
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
             // 文字の色
             .foregroundColor: UIColor(red: 30/255.0, green: 161/255.0, blue: 150/255.0, alpha:1),
             // フォント
-            NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 20)!
+            NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 25)!
         ]
         
         navigationItem.standardAppearance = appearance
@@ -205,9 +249,22 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // --- ここから ---
         if editingStyle == .delete {
+            // 削除対象のarticleを取得する
+            let articleArray = try! Realm().objects(Article.self).sorted(byKeyPath: "link", ascending: false).filter("bookMarkURL == %@", self.bookMarkArray[indexPath.row].bookMarkURL)
+            
+            // articleArray分繰り返して、imageUrlテーブルを削除する
+            for article in articleArray{
+                let imageUrlArray = try! Realm().objects(ImageUrl.self).sorted(byKeyPath: "link", ascending: false).filter("link == %@", article.link)
+                try! realm.write {
+                    self.realm.delete(imageUrlArray)
+                }
+            }
+            
             // データベースから削除する
             try! realm.write {
                 self.realm.delete(self.bookMarkArray[indexPath.row])
+                self.realm.delete(articleArray)
+                
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         } // --- ここまで追加 ---

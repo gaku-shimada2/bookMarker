@@ -8,7 +8,7 @@
 import Foundation
 
 struct DisplayArticleList {
-    // ブックマークURL
+    // ブックマークURLのページタイトル
     var pageTitle = ""
 
     // ページタイトル

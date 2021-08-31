@@ -20,7 +20,22 @@ class WebViewController: UIViewController,WKNavigationDelegate {
         super.viewDidLoad()
         openUrl(urlString: displayArticleList!.link)
         webView.navigationDelegate = self
+        // ナビゲーションバーのタイトル設定
+        self.navigationItem.title = displayArticleList!.title
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [
+            // 文字の色
+            .foregroundColor: UIColor(red: 30/255.0, green: 161/255.0, blue: 150/255.0, alpha:1),
+            // フォント
+            NSAttributedString.Key.font: UIFont(name: "Arial-BoldMT", size: 20)!
+        ]
         
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        
+ 
+   
         // Do any additional setup after loading the view.
     }
     

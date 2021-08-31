@@ -27,6 +27,9 @@
 		F37ECBF326B7E9CC00A0813B /* RssClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ECBF226B7E9CC00A0813B /* RssClient.swift */; };
 		F37ECBF726B8320B00A0813B /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ECBF626B8320B00A0813B /* ArticleList.swift */; };
 		F393A85826B51B0100B6C7C7 /* BookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F393A85726B51B0100B6C7C7 /* BookMark.swift */; };
+		F3FCE8D126D9C94500628FD7 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCE8D026D9C94500628FD7 /* InputViewController.swift */; };
+		F3FCE8D326D9DA8300628FD7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCE8D226D9DA8300628FD7 /* Article.swift */; };
+		F3FCE8D526D9DBB100628FD7 /* ImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCE8D426D9DBB100628FD7 /* ImageUrl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		F37ECBF226B7E9CC00A0813B /* RssClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssClient.swift; sourceTree = "<group>"; };
 		F37ECBF626B8320B00A0813B /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		F393A85726B51B0100B6C7C7 /* BookMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMark.swift; sourceTree = "<group>"; };
+		F3FCE8D026D9C94500628FD7 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		F3FCE8D226D9DA8300628FD7 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		F3FCE8D426D9DBB100628FD7 /* ImageUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrl.swift; sourceTree = "<group>"; };
 		FF10670A4AC58EFD53A0D522 /* Pods-BookMarker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMarker.release.xcconfig"; path = "Target Support Files/Pods-BookMarker/Pods-BookMarker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +119,7 @@
 				F37ECBF226B7E9CC00A0813B /* RssClient.swift */,
 				F315197726C10CA000F0BC39 /* ImageClient.swift */,
 				F376B4E026B3689500A6D388 /* Main.storyboard */,
+				F3FCE8D026D9C94500628FD7 /* InputViewController.swift */,
 				F376B4E326B3689600A6D388 /* Assets.xcassets */,
 				F376B4E526B3689600A6D388 /* LaunchScreen.storyboard */,
 				F376B4E826B3689600A6D388 /* Info.plist */,
@@ -122,6 +129,8 @@
 				F315195426BE33D700F0BC39 /* ConfigTableViewCell.swift */,
 				F315195526BE33D700F0BC39 /* ConfigTableViewCell.xib */,
 				F393A85726B51B0100B6C7C7 /* BookMark.swift */,
+				F3FCE8D226D9DA8300628FD7 /* Article.swift */,
+				F3FCE8D426D9DBB100628FD7 /* ImageUrl.swift */,
 				F37ECBF626B8320B00A0813B /* ArticleList.swift */,
 				F315195126BE2DA200F0BC39 /* Const.swift */,
 				F315196526C0B00600F0BC39 /* DisplayArticleList.swift */,
@@ -249,14 +258,17 @@
 				F376B4F626B50C0700A6D388 /* TableViewCell.swift in Sources */,
 				F315196326BFCE0800F0BC39 /* WebViewController.swift in Sources */,
 				F37ECBF326B7E9CC00A0813B /* RssClient.swift in Sources */,
+				F3FCE8D526D9DBB100628FD7 /* ImageUrl.swift in Sources */,
 				F315196926C0B85600F0BC39 /* DateUtils.swift in Sources */,
 				F37ECBF726B8320B00A0813B /* ArticleList.swift in Sources */,
 				F376B4DF26B3689500A6D388 /* ViewController.swift in Sources */,
+				F3FCE8D126D9C94500628FD7 /* InputViewController.swift in Sources */,
 				F315197826C10CA000F0BC39 /* ImageClient.swift in Sources */,
 				F315196626C0B00600F0BC39 /* DisplayArticleList.swift in Sources */,
 				F376B4DB26B3689500A6D388 /* AppDelegate.swift in Sources */,
 				F393A85826B51B0100B6C7C7 /* BookMark.swift in Sources */,
 				F376B4F226B3747700A6D388 /* ConfigViewController.swift in Sources */,
+				F3FCE8D326D9DA8300628FD7 /* Article.swift in Sources */,
 				F376B4DD26B3689500A6D388 /* SceneDelegate.swift in Sources */,
 				F315195226BE2DA200F0BC39 /* Const.swift in Sources */,
 				F315195626BE33D700F0BC39 /* ConfigTableViewCell.swift in Sources */,
